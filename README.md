@@ -23,30 +23,31 @@
 ## 4. 算法公式
 项目运行中涉及的核心数学算法与财务分析理论模型：
 
-**1. 向量检索的余弦相似度计算（Cosine Similarity）**
-在 RAG 知识库检索模块，用于衡量用户查询向量 $Q$ 与文档片段向量 $D$ 的语义相似度：
-$$
-\text{Similarity}(Q, D) = \frac{Q \cdot D}{\lVert Q \rVert \times \lVert D \rVert}
-= \frac{\sum_{i=1}^{n} Q_i D_i}{\sqrt{\sum_{i=1}^{n} Q_i^2}\ \sqrt{\sum_{i=1}^{n} D_i^2}}
-$$
+1. 向量检索的余弦相似度计算（Cosine Similarity）
 
-**2. 核心财务拆解：杜邦分析法（DuPont Analysis）**
-财务分析 Agent 在进行企业盈利能力溯源时，使用杜邦模型对净资产收益率 (ROE) 进行长链拆解：
-$$
-\text{ROE} =
-\left(\frac{\text{Net Income}}{\text{Sales}}\right)
-\times
-\left(\frac{\text{Sales}}{\text{Total Assets}}\right)
-\times
-\left(\frac{\text{Total Assets}}{\text{Shareholders' Equity}}\right)
-$$
-（即：净资产收益率 = 销售净利率 × 总资产周转率 × 权益乘数）
+   在 RAG 知识库检索模块，用于衡量用户查询向量 $Q$ 与文档片段向量 $D$ 的语义相似度：
 
-**3. 辩论收敛与停止阈值（Information Entropy）**
-在风控 Agent 和财务 Agent 进行的 3-5 轮对抗中，可用信息增益作为理论截断依据。当第 $t$ 轮辩论产生的新信息熵 $H(t)$ 的变化幅度低于预设阈值 $\epsilon$ 时，系统自动终止辩论进入总结阶段：
-$$
-\Delta H = \left| H(t-1) - H(t) \right| < \epsilon
-$$
+   $$
+   \text{Similarity}(Q, D) = \frac{Q \cdot D}{\lVert Q \rVert \times \lVert D \rVert} = \frac{\sum_{i=1}^{n} Q_i D_i}{\sqrt{\sum_{i=1}^{n} Q_i^2}\ \sqrt{\sum_{i=1}^{n} D_i^2}}
+   $$
+
+2. 核心财务拆解：杜邦分析法（DuPont Analysis）
+
+   财务分析 Agent 在进行企业盈利能力溯源时，使用杜邦模型对净资产收益率 (ROE) 进行长链拆解：
+
+   $$
+   \text{ROE} = \left(\frac{\text{Net Income}}{\text{Sales}}\right) \times \left(\frac{\text{Sales}}{\text{Total Assets}}\right) \times \left(\frac{\text{Total Assets}}{\text{Shareholders' Equity}}\right)
+   $$
+
+   （即：净资产收益率 = 销售净利率 × 总资产周转率 × 权益乘数）
+
+3. 辩论收敛与停止阈值（Information Entropy）
+
+   在风控 Agent 和财务 Agent 进行的 3-5 轮对抗中，可用信息增益作为理论截断依据。当第 $t$ 轮辩论产生的新信息熵 $H(t)$ 的变化幅度低于预设阈值 $\epsilon$ 时，系统自动终止辩论进入总结阶段：
+
+   $$
+   \Delta H = \left| H(t-1) - H(t) \right| < \epsilon
+   $$
 
 ## 5. 运行步骤
 该项目前端采用 Vite + React + TypeScript 架构，以下为本地运行部署的步骤：
